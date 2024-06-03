@@ -6,15 +6,15 @@ from django.http import HttpResponseRedirect #used to redirect from same page
 
 from django.contrib.auth import authenticate,login,logout
 
+from .models import Profile
+
 
 
 # Create your views here.
 
 def login_page(request):
     #return HttpResponse("login page reached")
-     if request.method=="POST":
-        first_name = request.POST.get("first_name")
-        last_name =  request.POST.get("last_name")
+    if request.method=="POST":
         email =  request.POST.get("email")
         password =  request.POST.get("password")
         user_obj = User.objects.filter(username = email) 
@@ -37,7 +37,7 @@ def login_page(request):
         return HttpResponseRedirect(request.path_info)
 
 
-        return render(request, "accounts/login.html")
+    return render(request, "accounts/login.html")
 
 def register_page(request):
 
@@ -63,3 +63,13 @@ def register_page(request):
         return HttpResponseRedirect(request.path_info)
 
     return render(request, "accounts/register.html")
+
+
+def activate_email(request, email_token):
+    try:
+        user = Profile.objects.get(email_token= email_token)
+        user.is_email_verified = True
+        user.save()
+        return redirect("/")
+    except Exception as e:
+        return HttpResponse("Invalid Email Token")
