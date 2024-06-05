@@ -25,10 +25,11 @@ from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 
 from home.views import *
 
-
+#inlcude individual urls.py from every app created
 urlpatterns = [
+    path('product/',include('products.urls') ),     
+    path('',include('home.urls') ), 
     path('accounts/',include('accounts.urls') ), 
-    path('home/',home),
     #path('getProduct/<int:id>',get_product_details),
     #path('getAllProducts/',get_all_products),
     path('admin/', admin.site.urls),
