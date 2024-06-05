@@ -145,4 +145,4 @@ EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_USE_TLS = True
 EMAIL_PORT =  587
 EMAIL_HOST_USER = "d.shaikh8879@gmail.com"
-EMAIL_HOST_PASSWORD = "viuv wiir gugr mzhf"
+EMAIL_HOST_PASSWORD = "" #Paste your app passowrd here from Google account settings
