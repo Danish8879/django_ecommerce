@@ -1,13 +1,13 @@
 from django.shortcuts import render
-from django.http import HttpResponse
 
-import json
-import requests
-from django.http import JsonResponse
-
-
+from products.models import Product
 
 #Create view here
 
 def index(request):
-    return render(request, "home/index.html")
+
+    products = Product.objects.all()
+
+    context = { 'products' : products,}
+
+    return render(request, "home/index.html",context)
